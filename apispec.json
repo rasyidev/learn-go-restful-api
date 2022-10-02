@@ -54,7 +54,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema":{
+              "schema": {
                 "$ref": "#/components/schemas/CreateOrUpdateCategory"
               }
             }
@@ -139,7 +139,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema":{
+              "schema": {
                 "$ref": "#/components/schemas/CreateOrUpdateCategory"
               }
             }
@@ -161,6 +161,40 @@
                     },
                     "data": {
                       "$ref": "#/components/schemas/Category"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete category by Id",
+        "summary": "Delete category by Id",
+        "tags": [
+          "Category API"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get all categories",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
                     }
                   }
                 }
