@@ -1,42 +1,47 @@
 {
-    "openapi":"3.0.2",
-    "info": {
-      "title":"Category RESTful API",
-      "description": "API Spec for Category RESTful API",
-      "version":"1.0"
-    },
-    "servers": [
-      {"url":"http://localhost:9090/api"}
-    ],
-    "paths": {
-      "/categories": {
-        "get":{
-          "description": "List all categories",
-          "responses": {
-            "200": {
-              "description": "Success get all categories", 
-              "content": {
-                "aplication/json" :{
-                  "schema":{
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "number"
-                      },
-                      "status": {
-                        "type": "string"
-                      },
-                      "data": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "number"
-                            },
-                            "name":{
-                              "type": "string"
-                            }
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Category RESTful API",
+    "description": "API Spec for Category RESTful API",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9090/api"
+    }
+  ],
+  "paths": {
+    "/categories": {
+      "get": {
+        "tags": [
+          "Category API"
+        ],
+        "description": "List all categories",
+        "summary": "List all categories",
+        "responses": {
+          "200": {
+            "description": "Success get all categories",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
                           }
                         }
                       }
@@ -46,8 +51,60 @@
               }
             }
           }
-
+        }
+      },
+      "post": {
+        "description": "Create new category",
+        "summary": "Create new category",
+        "tags": [
+          "Category API"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "Success create category",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "name":{
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
   }
+}
