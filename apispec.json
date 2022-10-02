@@ -18,6 +18,9 @@
         ],
         "description": "List all categories",
         "summary": "List all categories",
+        "security": [{
+          "CategoryAuth":[]
+        }],
         "responses": {
           "200": {
             "description": "Success get all categories",
@@ -48,6 +51,9 @@
       "post": {
         "description": "Create new category",
         "summary": "Create new category",
+        "security": [{
+          "CategoryAuth":[]
+        }],
         "tags": [
           "Category API"
         ],
@@ -89,6 +95,9 @@
       "get": {
         "description": "Get category by id",
         "summary": "Get category by Id",
+        "security": [{
+          "CategoryAuth":[]
+        }],
         "tags": [
           "Category API"
         ],
@@ -128,6 +137,9 @@
           "Category API"
         ],
         "summary": "Update category by Id",
+        "security": [{
+          "CategoryAuth":[]
+        }],
         "description": "Update category by Id",
         "parameters": [
           {
@@ -172,6 +184,9 @@
       "delete": {
         "description": "Delete category by Id",
         "summary": "Delete category by Id",
+        "security": [{
+          "CategoryAuth":[]
+        }],
         "tags": [
           "Category API"
         ],
@@ -206,6 +221,14 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "CategoryAuth":{
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "Authentication for Category API"
+      }
+    },
     "schemas": {
       "Category": {
         "type": "object",
