@@ -66,11 +66,11 @@
           }
         },
         "responses": {
-          "200":{
+          "200": {
             "description": "Success create category",
             "content": {
-              "application/json":{
-                "schema":{
+              "application/json": {
+                "schema": {
                   "type": "object",
                   "properties": {
                     "code": {
@@ -80,6 +80,43 @@
                       "type": "string"
                     },
                     "data": {
+                      "$ref": "#/components/schemas/Category"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/{categoryId}": {
+      "get": {
+        "description": "Get category by id",
+        "summary": "Get category by Id",
+        "tags": ["Category API"],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category Id"
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "Success get category",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "code":{
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data":{
                       "$ref": "#/components/schemas/Category"
                     }
                   }
@@ -99,7 +136,7 @@
           "id": {
             "type": "number"
           },
-          "name":{
+          "name": {
             "type": "string"
           }
         }
