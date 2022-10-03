@@ -3,7 +3,6 @@ package repository
 import (
 	"context"
 	"database/sql"
-	"errors"
 	"fmt"
 	"learn-go-restful-api/helper"
 	"learn-go-restful-api/model/domain"
@@ -66,6 +65,6 @@ func (respository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql
 		return category, nil
 
 	} else {
-		return category, errors.New(fmt.Sprintf("not found category with id: %v", categoryId))
+		return category, fmt.Errorf("not found category with id: %v", categoryId)
 	}
 }
