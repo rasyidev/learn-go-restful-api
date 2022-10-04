@@ -14,6 +14,13 @@ type CategoryControllerImpl struct {
 	CategoryService service.CategoryService
 }
 
+// Expose CategoryController untuk mengimplementasikan Struct CategoryControllerImpl | Mirip polymorphism
+func NewCategoryController(categoryService service.CategoryService) CategoryController {
+	return &CategoryControllerImpl{
+		CategoryService: categoryService,
+	}
+}
+
 func (controller *CategoryControllerImpl) Create(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	categoryCreateRequest := web.CategoryCreateRequest{}
 	helper.ReadFromRequestBody(request, &categoryCreateRequest)
