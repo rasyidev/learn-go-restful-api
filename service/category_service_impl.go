@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 	"database/sql"
-	"fmt"
+	"learn-go-restful-api/exception"
 	"learn-go-restful-api/helper"
 	"learn-go-restful-api/model/domain"
 	"learn-go-restful-api/model/web"
@@ -40,10 +40,8 @@ func (service *CategoryServiceImpl) Create(ctx context.Context, request web.Cate
 	category := domain.Category{
 		Name: request.Name,
 	}
-	fmt.Printf("CATEGORY (domain.Category): \n %#v", category)
 
 	category = service.CategoryRespository.Save(ctx, tx, category)
-	fmt.Printf("CATEGORY (service.CategoryRepository.Save()): \n %#v", category)
 
 	return helper.ToCategoryResponse(category)
 }
@@ -60,7 +58,9 @@ func (service *CategoryServiceImpl) Update(ctx context.Context, request web.Cate
 
 	// cari data yang mau diupdate dulu
 	category, err := service.CategoryRespository.FindById(ctx, tx, request.Id)
-	helper.PanicIfError(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	// jika data ada, update nilainya sesuai request
 	category.Name = request.Name
@@ -78,7 +78,9 @@ func (service *CategoryServiceImpl) Delete(ctx context.Context, categoryId int) 
 
 	// cari data yang mau dihapus dulu
 	category, err := service.CategoryRespository.FindById(ctx, tx, categoryId)
-	helper.PanicIfError(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	service.CategoryRespository.Delete(ctx, tx, category)
 }
@@ -101,7 +103,9 @@ func (service *CategoryServiceImpl) FindById(ctx context.Context, categoryId int
 	defer helper.CommitOrRollback(tx)
 
 	category, err := service.CategoryRespository.FindById(ctx, tx, categoryId)
-	helper.PanicIfError(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	return helper.ToCategoryResponse(category)
 }
